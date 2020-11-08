@@ -61,7 +61,7 @@
 				]
 			},
 			{
-				"name": "dataflow1",
+				"name": "AggregateMoviesDataFlow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
@@ -83,6 +83,13 @@
 					"dataflow": {
 						"referenceName": "AggregateData",
 						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "AzureDataLakeStorageGen2Cal",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "polybase"
 					},
 					"compute": {
 						"coreCount": 8,

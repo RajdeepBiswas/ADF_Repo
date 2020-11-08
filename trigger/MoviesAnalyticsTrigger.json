@@ -1,0 +1,25 @@
+{
+	"name": "MoviesAnalyticsTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Movie_Analytics_Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 8,
+				"startTime": "2020-11-08T22:34:00Z",
+				"endTime": "2020-11-13T22:34:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
