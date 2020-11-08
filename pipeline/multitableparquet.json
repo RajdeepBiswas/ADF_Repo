@@ -1,0 +1,85 @@
+{
+	"name": "multitableparquet",
+	"properties": {
+		"activities": [
+			{
+				"name": "IterateTableList",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.TableList",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "CopyOracleToBlob",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "OracleMultipleTable",
+									"type": "DatasetReference",
+									"parameters": {
+										"SourceTableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "blobParquet1",
+									"type": "DatasetReference",
+									"parameters": {
+										"SourceTableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"TableList": {
+				"type": "array",
+				"defaultValue": [
+					"OE.promotions_new",
+					"OE.product_descriptions_new",
+					"OE.orders"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2019-06-21T15:07:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

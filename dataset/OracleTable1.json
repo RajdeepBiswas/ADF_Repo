@@ -1,0 +1,29 @@
+{
+	"name": "OracleTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OracleConnection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"structure": [
+			{
+				"name": "PROMO_ID",
+				"type": "Double"
+			},
+			{
+				"name": "PROMO_ID_DECIMAL",
+				"type": "String"
+			},
+			{
+				"name": "PROMO_NAME",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "\"OE\".\"PROMOTIONS_NEW\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

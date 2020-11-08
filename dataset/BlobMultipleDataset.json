@@ -1,0 +1,31 @@
+{
+	"name": "BlobMultipleDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blob9cognitive",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SourceTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().SourceTableName",
+					"type": "Expression"
+				},
+				"container": "oraclestaging"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "OracleMultipleTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OracleConnection",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SourceTableName": {
+				"type": "string",
+				"defaultValue": "oe.customer"
+			}
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().SourceTableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

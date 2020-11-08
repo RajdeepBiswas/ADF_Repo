@@ -1,0 +1,21 @@
+{
+	"name": "SourceDataset_rbd",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobhaldbwsrb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "tka/materialized-view/taxi_type=yellow",
+				"container": "nyctaxi-curated"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

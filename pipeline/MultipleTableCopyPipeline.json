@@ -1,0 +1,90 @@
+{
+	"name": "MultipleTableCopyPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "IterateTableList",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.TableList",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "CopyOracleToBlob",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings",
+										"maxConcurrentConnections": 2
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "OracleMultipleTable",
+									"type": "DatasetReference",
+									"parameters": {
+										"SourceTableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "BlobMultipleDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"SourceTableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"TableList": {
+				"type": "array",
+				"defaultValue": [
+					"OE.PROMOTIONS",
+					"OE.PRODUCT_DESCRIPTIONS"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2019-06-19T00:10:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,29 @@
+{
+	"name": "blobParquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blob9cognitive",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SourceTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().SourceTableName",
+					"type": "Expression"
+				},
+				"container": "oracleparquetstaging"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,103 @@
+{
+	"name": "CopyPipeline_oracleToblob",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_y10",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "\"OE\".\"CUSTOMERS\""
+					},
+					{
+						"name": "Destination",
+						"value": "/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"maxConcurrentConnections": 2
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"redirectIncompatibleRowSettings": {
+						"linkedServiceName": {
+							"referenceName": "blob9cognitive",
+							"type": "LinkedServiceReference"
+						},
+						"path": "tmp"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PROMO_ID"
+								},
+								"sink": {
+									"type": "Double",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "PROMO_ID_DECIMAL"
+								},
+								"sink": {
+									"type": "Double",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "PROMO_NAME"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OracleTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_y10",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2019-06-19T21:40:50Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

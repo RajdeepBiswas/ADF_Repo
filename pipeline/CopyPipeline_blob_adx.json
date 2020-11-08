@@ -1,0 +1,527 @@
+{
+	"name": "CopyPipeline_blob_adx",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_rbd",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "nyctaxi-curated/tka/materialized-view/taxi_type=yellow/"
+					},
+					{
+						"name": "Destination",
+						"value": "taxi_trips_mat_view"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"maxConcurrentConnections": 2,
+							"recursive": true,
+							"wildcardFileName": "*"
+						}
+					},
+					"sink": {
+						"type": "AzureDataExplorerSink"
+					},
+					"enableStaging": false,
+					"parallelCopies": 4,
+					"enableSkipIncompatibleRow": true,
+					"dataIntegrationUnits": 4,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "vendor_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "vendor_id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "store_and_fwd_flag",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_and_fwd_flag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "rate_code_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "rate_code_id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_location_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_location_id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_location_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_location_id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_longitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pickup_longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_latitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pickup_latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_longitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dropoff_longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_latitude",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dropoff_latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "passenger_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "passenger_count",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_distance",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "trip_distance",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "fare_amount",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "fare_amount",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "extra",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "extra",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "mta_tax",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "mta_tax",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "tip_amount",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "tip_amount",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "tolls_amount",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "tolls_amount",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "ehail_fee",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "ehail_fee",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "improvement_surcharge",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "improvement_surcharge",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "total_amount",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "total_amount",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_type",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "payment_type",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_type",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "trip_type",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "vendor_abbreviation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vendor_abbreviation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "vendor_description",
+									"type": "String"
+								},
+								"sink": {
+									"name": "vendor_description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_type_description",
+									"type": "String"
+								},
+								"sink": {
+									"name": "trip_type_description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "month_name_short",
+									"type": "String"
+								},
+								"sink": {
+									"name": "month_name_short",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "month_name_full",
+									"type": "String"
+								},
+								"sink": {
+									"name": "month_name_full",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_type_description",
+									"type": "String"
+								},
+								"sink": {
+									"name": "payment_type_description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "rate_code_description",
+									"type": "String"
+								},
+								"sink": {
+									"name": "rate_code_description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_borough",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pickup_borough",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_zone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pickup_zone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_service_zone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pickup_service_zone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_borough",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dropoff_borough",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_zone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dropoff_zone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_service_zone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "dropoff_service_zone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_year",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_month",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_month",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_day",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_day",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_hour",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_hour",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_minute",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_minute",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "pickup_second",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "pickup_second",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_year",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_month",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_month",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_day",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_day",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_hour",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_hour",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_minute",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_minute",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "dropoff_second",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "dropoff_second",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_rbd",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_rbd",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-01-18T14:46:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

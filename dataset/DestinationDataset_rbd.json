@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_rbd",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataExploreradxe2e",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDataExplorerTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "taxi_trips_mat_view"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
