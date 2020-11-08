@@ -1,0 +1,69 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfvision"
+		},
+		"AzureBlobStoragepoku_connectionString": {
+			"value": ""
+		},
+		"AzureBlobhaldbwsrb_connectionString": {
+			"value": ""
+		},
+		"AzureDataExploreradxe2e_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorageGen2Cal_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStoragegen2_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDW1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalyticsLS_connectionString": {
+			"value": ""
+		},
+		"OracleConnection_connectionString": {
+			"value": ""
+		},
+		"blob9cognitive_connectionString": {
+			"value": ""
+		},
+		"AzureDataExploreradxe2e_properties_typeProperties_endpoint": {
+			"value": "https://adxe2e.southcentralus.kusto.windows.net"
+		},
+		"AzureDataExploreradxe2e_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataExploreradxe2e_properties_typeProperties_servicePrincipalId": {
+			"value": "ff900c30-ba86-491c-84fb-75bae6df5fef"
+		},
+		"AzureDataExploreradxe2e_properties_typeProperties_database": {
+			"value": "adxdbe2e"
+		},
+		"AzureDataLakeStorageGen2Cal_properties_typeProperties_url": {
+			"value": "https://adlsgen2calcutta.dfs.core.windows.net"
+		},
+		"AzureDataLakeStoragegen2_properties_typeProperties_url": {
+			"value": "https://hebadlsgen2.dfs.core.windows.net"
+		},
+		"AzureKeyVaultexxon_properties_typeProperties_baseUrl": {
+			"value": "https://keyvaultforeverything.vault.azure.net/"
+		},
+		"AzureKeyVaulttest_properties_typeProperties_baseUrl": {
+			"value": "https://keyvaultforeverything.vault.azure.net/"
+		},
+		"MoviesGithub_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/djpmsft/adf-ready-demo/master/moviesDB.csv"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
